@@ -16,39 +16,47 @@ class _HomepageState extends State<Homepage> {
     double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Qr Code Scanner and Generator'),
-        backgroundColor: Colors.blue,
+        elevation: 20,
+        shadowColor: Colors.black,
+        titleTextStyle:
+            TextStyle(color: Colors.white, fontSize: screenWidth / 18),
+        surfaceTintColor: const Color.fromARGB(255, 249, 206, 76),
+        title: const Text('QR Code Scanner and Generator'),
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SizedBox(
-              height: screenHeight / 5,
-            ),
-            ElevatedButton(
+            ElevatedButton.icon(
               onPressed: () {
-                setState(() {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => ScanQrCode()),
-                  );
-                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ScanQrCode()),
+                );
               },
-              child: Text('Scan QR Code'),
+              icon: const Icon(Icons.qr_code_scanner),
+              label: const Text('Scan QR Code'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.blueAccent,
+                foregroundColor: Colors.white,
+              ),
             ),
-            SizedBox(
-              height: screenHeight / 5,
-            ),
-            ElevatedButton(
+            SizedBox(height: screenHeight / 10),
+            ElevatedButton.icon(
               onPressed: () {
-                setState(() {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => GenerateQrCode()),
-                  );
-                });
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const GenerateQrCode()),
+                );
               },
-              child: Text('Generate QR Code'),
+              icon: const Icon(Icons.qr_code),
+              label: const Text('Generate QR Code'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.greenAccent,
+                foregroundColor: Colors.white,
+              ),
             ),
           ],
         ),
